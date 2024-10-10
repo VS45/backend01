@@ -1,12 +1,13 @@
 const User = require("../model/user");
 const bcrypt = require("bcryptjs");
 exports.getUsers = (req, res) => {
-  try {
-    const users = User.findAllUsers();
+  User.findAllUsers((err, users) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).json({ error: err.message });
+    }
     return res.status(200).json(users);
-  } catch (err) {
-    return res.status(500).json(err);
-  }
+  });
 };
 
 exports.postUser = async (req, res) => {
