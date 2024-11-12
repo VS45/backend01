@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 require("dotenv").config({ path: __dirname + "/.env" });
-exports.getUsers = async(req, res) => {
- try{
-const users=await User.find();
-return res.status(200).json(users)
- }catch(err){
- return res.status(500).json({message:err.message})
- }
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    return res.status(200).json(users);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 exports.postUser = async (req, res) => {
